@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<script>
+
+// Вернуть число в обратном порядке:
+
+function reverseNumber(num) {
+    return parseInt(num.toString().split('').reverse().join(''));
+}
+
+console.log(reverseNumber(123)); // 321
+
+// Вернуть число без повторяющихся цифр:
+
+function removeDuplicates(num) {
+    let uniqueDigits = [...new Set(num.toString().split(''))];
+    return parseInt(uniqueDigits.join(''));
+}
+
+console.log(removeDuplicates(111333456)); // 13456
+// Посчитать, сколько раз в данном числе встречается данная цифра:
+
+function countDigitOccurrences(num, digit) {
+    let count = 0;
+    num.toString().split('').forEach((n) => {
+        if (parseInt(n) === digit) {
+            count++;
+        }
+    });
+    return count;
+}
+
+console.log(countDigitOccurrences(1355567, 5)); // 3
+// Посчитать самую длинную последовательность нулей/единиц в двоичной записи данного числа:
+
+function longestSequenceOfZerosOrOnes(num) {
+    let binary = num.toString(2);
+    let maxSequence = 0;
+    let currentSequence = 0;
+
+    for (let digit of binary) {
+        if (digit === '0') {
+            currentSequence++;
+            maxSequence = Math.max(maxSequence, currentSequence);
+        } else {
+            currentSequence = 0;
+        }
+    }
+
+    return maxSequence;
+}
+
+console.log(longestSequenceOfZerosOrOnes(1011001110011101)); // Example
+
+// Задача 2:
+
+// Найти самый первый неповторяющийся символ в строке:
+
+function firstNonRepeatingCharacter(str) {
+    for (let char of str) {
+        if (str.indexOf(char) === str.lastIndexOf(char)) {
+            return char;
+        }
+    }
+    return null;
+}
+
+console.log(firstNonRepeatingCharacter('фывфавыапрс')); // 'п'
+
+// Cгенерировать строку заданной длины из случайных символов, взятых из набора английскийх букв и цифр:
+
+function generateRandomString(length) {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
+console.log(generateRandomString(5)); // '2fvg6'
+
+// Вернуть только уникальные символы строки:
+
+function uniqueCharacters(str) {
+    let unique = '';
+    for (let char of str) {
+        if (str.indexOf(char) === str.lastIndexOf(char)) {
+            unique += char;
+        }
+    }
+    return unique;
+}
+
+console.log(uniqueCharacters('позволяеткопироватьтекстиз')); // 'позвляеткираьс'
+</script>
+
+</head>
+</html>
